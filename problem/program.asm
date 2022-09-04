@@ -23,11 +23,11 @@
 (LIMPIAR)
          @16384
          D=A
-         @Coord1
+         @coord1
          M=D
          @8192
          M=O
-         @Cont1
+         @cont1
          @1
          D=A
          @salto1
@@ -40,11 +40,11 @@
 (DLINEA)
          @16400
          D=A
-         @Coord
+         @coord
          M=D
          @256
          D=A
-         @Cont
+         @cont
          M=O
          @32
          D=A
