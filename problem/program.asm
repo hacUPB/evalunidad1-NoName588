@@ -3,145 +3,139 @@
 // TU CORREO ELECTRÓNICO = emmanuel.echeverri@upb.edu.co
 
 
+(INICIO)
+            @16400
+            D=A
 
-(INIT)
-        @KBD
-        D=M
-        @84
-        D=D-A
-        @DLINE
-        D;JEQ
+            @pscreen
+            M=D
 
-        @KBD
-        D=M
-        @67
-        D=D-A 
-        @EMTY
-        D;JEQ
+            @256
+            D=A
 
-        @INIT
-        0;JMP
+            @cont
+            M=D
 
-(EMTY)
-        @16384 
-    D=A
-    @coordx 
-    M=D 
-    @8192
-    D=A
-    @contx
-    M=D
-    @1
-    D=A 
-    @saltox
-    M=D
-    @colorx
-    M=0
-    @DRAWR
-    0;JMP
+            @32
+            D=A
+            @cont2
+            M=D
 
-(DLINE)
-        @16400 //16384 (pantalla completa) + fila * 32 + columna/16
-        D=A
-    @coord 
-    M=D 
-    @256 //Las filas que se pintaran
-    D=A
-    @cont
-    M=D
-    @32
-    D=A 
-    @salto
-    M=D
-        @256
-        D=A
-    @color
-    M=D
+            @4096
+            D=A
+            @comienzo
+            M=D
 
-    @DRAW
-    0;JMP
+            @KBD
+            D=M
+            @84
+            D=D-A
+            @VERTICAL
+            D;JEQ
 
-(CLINE)
+            @KBD
+            D=M
+            @67
+            D=D-A
+            @SETCL
+            D;JEQ
 
-    @20480
-    D=A
-    @coordx
-    M=D
-    @32
-    D=A
-    @contx
-    M=D
-    @1
-    D=A
-    @saltox
-    M=D
-    @colorx
-    M=-1
+            @INICIO
+            0;JMP
+(VERTICAL)
+            @cont
+            D=M
 
-        @DRAWR
-    0;JMP
+            @HORIZONTAL
+            D;JEQ
 
-(DRAW)
-        @coord
-        D=M
-        @pscreen
-        M=D
+            @256
+            D=A
 
-(DRAWL)
-        @cont
-        D=M
-        @CLINE
-        D;JEQ
+            @pscreen
+            A=M
+            M=D
+            @cont
+            M=M-1
+            @32
+            D=A
+            @pscreen
+            M=M+D
 
-        @color
-        D=M
-        @pscreen
-        A=M
-        M=D
+            @VERTICAL
+            0;JMP
 
-        @cont
-        M=M-1
+(HORIZONTAL)
+            @comienzo
+            D=M
 
-        @salto
-        D=M
+            @SCREEN
+            A=A+D
+            M=-1
 
-        @pscreen
-        M=M+D
+            @comienzo
+            M=M+1
 
-        @DRAWL
-        0;JMP
+            @cont2
+            M=M-1
+            D=M
+            @END
+            D;JEQ
 
-(DRAWR)
-        @coordx
-        D=M
-        @pscreen
-        M=D
+            @HORIZONTAL
+            0;JMP
 
-(DRAWN)
-        @contx
-        D=M
-        @END
-        D;JEQ
+(SETCL)
+            @16384
+            D=A
+            @coord
+            M=D
+            @8192
+            D=A
+            @cont
+            M=D
+            @1
+            D=A
+            @salto
+            M=D
+            @color
+            M=0
+            @RECT
+            0;JMP
 
-        @colorx
-        D=M
-        @pscreen
-        A=M
-        M=D
+(RECT)
+            @coord
+            D=M
+            @pscreen
+            M=D
 
-        @contx
-        M=M-1
+(PAINT)
+            @cont
+            D=M
 
-        @saltox
-        D=M
+            @END
+            D;JEQ
 
-        @pscreen
-        M=M+D
 
-        @DRAWN
-        0;JMP
 
+            @color
+            D=M
+            @pscreen
+            A=M
+            M=D
+
+            @cont
+            M=M-1
+
+            @salto
+            D=M
+
+            @pscreen
+            M=M+D
+
+            @PAINT
+            0;JMP
 
 (END)
-        @INIT
-        0;JMP
+            @INICIO
+            0;JMP
