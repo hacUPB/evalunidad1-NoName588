@@ -3,96 +3,87 @@
 // TU CORREO ELECTRÓNICO = emmanuel.echeverri@upb.edu.co
 
 
-(INICIO)
+(INIZIO)
+
             @16400
             D=A
-
             @pscreen
             M=D
-
             @256
             D=A
-
-            @cont
+            @conte
             M=D
-
             @32
             D=A
-            @cont2
+            @conta
             M=D
-
             @4096
             D=A
-            @comienzo
+            @initio
             M=D
-
             @KBD
             D=M
             @84
             D=D-A
-            @VERTICAL
+            @COLUM
             D;JEQ
-
             @KBD
             D=M
             @67
             D=D-A
-            @SETCL
+            @SCHERMO1
             D;JEQ
-
-            @INICIO
+            @INIZIO
             0;JMP
-(VERTICAL)
-            @cont
+
+(FILIA)
+            @initio
             D=M
-
-            @HORIZONTAL
+            @SCREEN
+            A=A+D
+            M=-1
+            @initio
+            M=M+1
+            @conta
+            M=M-1
+            D=M
+            @FINALE
             D;JEQ
+            @FILIA
+            0;JMP
 
+(COLUM)
+
+
+            @conte
+            D=M
+            @FILIA
+            D;JEQ
             @256
             D=A
-
             @pscreen
             A=M
             M=D
-            @cont
+            @conte
             M=M-1
             @32
             D=A
             @pscreen
             M=M+D
-
-            @VERTICAL
+            @COLUM
             0;JMP
 
-(HORIZONTAL)
-            @comienzo
-            D=M
 
-            @SCREEN
-            A=A+D
-            M=-1
+(SCHERMO1)
 
-            @comienzo
-            M=M+1
 
-            @cont2
-            M=M-1
-            D=M
-            @END
-            D;JEQ
-
-            @HORIZONTAL
-            0;JMP
-
-(SETCL)
             @16384
             D=A
             @coord
             M=D
             @8192
             D=A
-            @cont
+            @conte
             M=D
             @1
             D=A
@@ -100,42 +91,36 @@
             M=D
             @color
             M=0
-            @RECT
+            @CANCELLARE
             0;JMP
 
-(RECT)
+(CANCELLARE)
+
+
             @coord
             D=M
             @pscreen
             M=D
 
-(PAINT)
-            @cont
+(PRINTO)
+            @conte
             D=M
-
-            @END
+            @FINALE
             D;JEQ
-
-
-
             @color
             D=M
             @pscreen
             A=M
             M=D
-
-            @cont
+            @conte
             M=M-1
-
             @salto
             D=M
-
             @pscreen
             M=M+D
-
-            @PAINT
+            @PRINTO
             0;JMP
 
-(END)
-            @INICIO
+(FINALE)
+            @INIZIO
             0;JMP
